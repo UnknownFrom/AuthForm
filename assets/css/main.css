@@ -37,8 +37,11 @@ p{
 form{
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 375px;
     color: #9400f6;
+    padding: 20px;
+    border: 3px solid #492b9a;
+    border-radius: 25px;
 }
 
 input{
@@ -51,10 +54,30 @@ input{
 }
 
 button{
+    margin: 5px;
     inline-size: 200px;
     align-self: center;
     padding: 10px;
     background: rgba(167, 67, 250, 0.82);
     border: unset;
     cursor: pointer;
+    border-radius: 40px;
+}
+
+.logout{
+    margin: 5px 0;
+    font-size: 15px;
+    text-align: center;
+    color: #9400f6;
+}
+
+.fr{
+
+    padding: 20px;
+    border: 3px solid #492b9a;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    color: #9400f6;
 }
