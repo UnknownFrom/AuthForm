@@ -19,8 +19,8 @@
     </script>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
-        <label>ФИО</label>
+    <form>
+        <label>ФИО<label class="star">*</label></label>
         <input type="text" name="full_name" class="full_name" placeholder="Введите полное имя">
         <label>Логин<label class="star">*</label></label>
         <input type="text" name="login" class="login" placeholder="Введите логин">
@@ -32,44 +32,17 @@
         <input type="password" name="password" class="password" placeholder="Введите пароль">
         <label>Подтверждение пароля<label class="star">*</label></label>
         <input type="password" name="password_confirm" class="password_confirm" placeholder="Повторите пароль">
-        <button type="submit" class="reg">Зарегистрироваться</button>
+        <button type="submit" class="button-reg">Зарегистрироваться</button>
         <p>
             У вас уже есть аккаунт? - <a href="auth.php">авторизируйтесь</a>!
             <br>
             <label class="star">*</label> - обязательные поля для заполнения
         </p>
-        <?php
-            if(isset($_SESSION['message'])){
-                echo '<p class="msg">' . $_SESSION['message'] . '</p>';
-            }
-            unset($_SESSION['message']);
-        ?>
+        <p class="msg none">1</p>
     </form>
-<script>
-    $(document).ready(function (){
-        $('button.reg').on('click', function (){
-            var full_nameVal = $('input.full_name').val();
-            var loginVal = $('input.login').val();
-            var emailVal = $('input.email').val();
-            //var avatarVal = $('input.avatar').val();
-            var passwordVal = $('input.password').val();
-            var password_confirmVal = $('input.password_confirm').val();
 
-            $.ajax({
-                method: "POST",
-                url: "vendor/signup.php",
-                data: { full_name: full_nameVal,
-                    login: loginVal,
-                    email: emailVal,
-                    //avatar: avatarVal,
-                    password: passwordVal,
-                    password_confirm: password_confirmVal}
-            })
-                .done(function( msg ) {
-                    alert( "Data Saved: " + msg );
-                });
-        })
-    })
-</script>
+
+    <script src="assets/js/http_code.jquery.com_jquery-3.6.0.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
