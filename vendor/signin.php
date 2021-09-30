@@ -3,15 +3,17 @@
     require_once ('connect.php');
     global $connect;
 
-    $login = $_POST['login'];
-    $password = ($_POST['password']);
+    $data = [
+        "login" => $_POST['login'],
+        "password" => ($_POST['password'])
+    ];
 
     $error_fields = [];
 
-    if ($login ===''){
+    if ($data['login'] === ''){
         $error_fields[] = 'login';
     }
-    if($password ==='')
+    if($data['password'] === '')
     {
         $error_fields[] = 'password';
     }
@@ -25,10 +27,10 @@
         echo json_encode($response);
         die();
     }
-    $password = md5($_POST['password']);
-    $check_user = mysqli_query($connect, "SELECT * FROM `test` WHERE `login` = '$login' AND `password` = '$password'");
-    if (mysqli_num_rows($check_user) > 0){
-        $user = mysqli_fetch_assoc($check_user);
+    $data['password'] = md5($_POST['password']);
+    $check_user = checkUser();
+    if ($check_user){
+        $user = $check_user;
         $_SESSION['user'] = [
             "id" => $user['id'],
             "full_name" => $user['full_name'],
@@ -49,5 +51,14 @@
 
         echo json_encode($response);
     }
+
+    function checkUser(){
+        global $db, $data;
+        $sql = "SELECT * FROM `test` WHERE `login` = :login AND `password` = :password";
+        $sth = $db->prepare($sql);
+        $sth->execute($data);
+        return $sth->fetch(PDO::FETCH_ASSOC);
+    }
     ?>
+
 

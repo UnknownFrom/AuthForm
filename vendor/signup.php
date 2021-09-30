@@ -3,18 +3,18 @@
     require_once ('connect.php');
     global $connect;
 
-    $data = array ([
+    $data = [
         "full_name" => $_POST['full_name'],
         "login" => $_POST['login'],
         "email" => $_POST['email'],
         "password" => $_POST['password'],
-        "password_confirm" => $_POST['password_confirm']
-    ]);
-    $sql = "SELECT * FROM `test` WHERE `login` = :login";
-    $db = new Database();
-    $check_login = $db->query($sql, $data);
+        "password_confirm" => $_POST['password_confirm'],
+        "avatar" => ''
+    ];
 
-    if (count($check_login)){
+    $check_login = checkLogin();
+
+    if ($check_login){
         $response = [
             "status" => false,
             "type" => 1,
@@ -26,29 +26,25 @@
     }
     $error_fields = [];
 
-    if ($data['login'] ===''){
+    if ($data['login'] === ''){
         $error_fields[] = 'login';
     }
-    if($data['password'] ==='')
+    if($data['password'] === '')
     {
         $error_fields[] = 'password';
     }
-    if($data['full_name'] ==='')
+    if($data['full_name'] === '')
     {
         $error_fields[] = 'full_name';
     }
-    if($data['email'] ==='' || !filter_var($data['email'], FILTER_VALIDATE_EMAIL))
+    if($data['email'] === '' || !filter_var($data['email'], FILTER_VALIDATE_EMAIL))
     {
         $error_fields[] = 'email';
     }
-    if($data['password_confirm'] ==='')
+    if($data['password_confirm'] === '')
     {
         $error_fields[] = 'password_confirm';
     }
-    /*if(!isset($_FILES['avatar']))
-    {
-        $error_fields[] = 'avatar';
-    }*/
     if(!empty($error_fields)){
         $response = [
             "status" => false,
@@ -61,7 +57,6 @@
     }
 
     if($data['password'] === $data['password_confirm']) {
-        //move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path);
         if(isset($_FILES['avatar'])) {
             $path = 'uploads/' . time() . $_FILES['avatar']['name'];
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
@@ -77,11 +72,9 @@
             $path = '';
         }
         $data['password'] = md5($data['password']);
-        $data['path'] = $path;
+        $data['avatar'] = $path;
 
-        $sql = "INSERT INTO `test` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, :full_name, :login, :email, :password, :path)";
-
-        $db->execute($sql, $data);
+        toSetData();
 
         $response = [
             "status" => true,
@@ -95,4 +88,21 @@
             "message" => "Пароли не совпадают"
         ];
         echo json_encode($response);
+    }
+
+    function checkLogin()
+    {
+        global $db, $data;
+        $sql = "SELECT * FROM test WHERE login = ?";
+        $sth = $db->prepare($sql);
+        $sth->execute(array($data['login']));
+        return $sth->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function toSetData()
+    {
+        global $db, $data;
+        $sql = 'INSERT INTO test (id, full_name, login, email, password, avatar) VALUES (NULL, :full_name, :login, :email, :password, :avatar)';
+        $sth = $db->prepare($sql);
+        $sth->execute($data);
     }
