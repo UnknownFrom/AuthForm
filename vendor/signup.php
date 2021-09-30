@@ -3,14 +3,18 @@
     require_once ('connect.php');
     global $connect;
 
-    $full_name = $_POST['full_name'];
-    $login = $_POST['login'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+    $data = array ([
+        "full_name" => $_POST['full_name'],
+        "login" => $_POST['login'],
+        "email" => $_POST['email'],
+        "password" => $_POST['password'],
+        "password_confirm" => $_POST['password_confirm']
+    ]);
+    $sql = "SELECT * FROM `test` WHERE `login` = :login";
+    $db = new Database();
+    $check_login = $db->query($sql, $data);
 
-    $check_login = mysqli_query($connect, "SELECT * FROM `test` WHERE `login` = '$login'");
-    if (mysqli_num_rows($check_login) > 0){
+    if (count($check_login)){
         $response = [
             "status" => false,
             "type" => 1,
@@ -22,22 +26,22 @@
     }
     $error_fields = [];
 
-    if ($login ===''){
+    if ($data['login'] ===''){
         $error_fields[] = 'login';
     }
-    if($password ==='')
+    if($data['password'] ==='')
     {
         $error_fields[] = 'password';
     }
-    if($full_name ==='')
+    if($data['full_name'] ==='')
     {
         $error_fields[] = 'full_name';
     }
-    if($email ==='' || !filter_var($email, FILTER_VALIDATE_EMAIL))
+    if($data['email'] ==='' || !filter_var($data['email'], FILTER_VALIDATE_EMAIL))
     {
         $error_fields[] = 'email';
     }
-    if($password_confirm ==='')
+    if($data['password_confirm'] ==='')
     {
         $error_fields[] = 'password_confirm';
     }
@@ -56,7 +60,7 @@
         die();
     }
 
-    if($password === $password_confirm) {
+    if($data['password'] === $data['password_confirm']) {
         //move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path);
         if(isset($_FILES['avatar'])) {
             $path = 'uploads/' . time() . $_FILES['avatar']['name'];
@@ -72,9 +76,12 @@
         else{
             $path = '';
         }
-        $password = md5($password);
+        $data['password'] = md5($data['password']);
+        $data['path'] = $path;
 
-        mysqli_query($connect, "INSERT INTO `test` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, '$full_name', '$login', '$email', '$password', '$path')");
+        $sql = "INSERT INTO `test` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, :full_name, :login, :email, :password, :path)";
+
+        $db->execute($sql, $data);
 
         $response = [
             "status" => true,
