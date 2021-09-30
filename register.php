@@ -38,7 +38,7 @@
             <br>
             <label class="star">*</label> - обязательные поля для заполнения
         </p>
-        <p class="msg none">1</p>
+        <p class="msg none"></p>
     </form>
 
 

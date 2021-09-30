@@ -77,6 +77,7 @@ $('.button-reg').click(function (e){
             if(data.status)
             {
                 document.location.href = '/auth.php';
+                $('.msg').removeClass('none').text(data.message);
             }
             else{
                 if(data.type === 1)

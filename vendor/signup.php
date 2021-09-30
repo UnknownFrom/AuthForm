@@ -63,7 +63,6 @@
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
                 $response = [
                     "status" => false,
-                    "type" => 2,
                     "message" => "Ошибка при загрузке аватара"
                 ];
                 echo json_encode($response);

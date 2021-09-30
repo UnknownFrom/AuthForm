@@ -35,7 +35,6 @@
             "avatar" => $user['avatar'],
             "email" => $user['email']
         ];
-        //header('Location: ../profile.php');
         $response = [
                 "status" => true
         ];
@@ -43,8 +42,6 @@
         echo json_encode($response);
 
     } else {
-        //$_SESSION['message'] = 'Не верный логин или пароль';
-        //header('Location: ../auth.php');
         $response = [
             "status" => false,
             "message" => "Неверный логин или пароль"

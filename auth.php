@@ -23,6 +23,9 @@
         <p>
             У вас нет аккаунта? - <a href="/register.php">зарегистрируйтесь</a>!
         </p>
+        <?php
+            echo '<p class="msg none"></p>'
+            ?>
         <p class="msg none"></p>
     </form>
 
