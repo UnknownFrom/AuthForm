@@ -7,10 +7,9 @@
         "full_name" => $_POST['full_name'],
         "login" => $_POST['login'],
         "email" => $_POST['email'],
-        "password" => $_POST['password'],
-        "password_confirm" => $_POST['password_confirm'],
-        "avatar" => ''
+        "password" => $_POST['password']
     ];
+    $password_confirm = $_POST['password_confirm'];
 
     $check_login = checkLogin();
 
@@ -41,7 +40,7 @@
     {
         $error_fields[] = 'email';
     }
-    if($data['password_confirm'] === '')
+    if($password_confirm === '')
     {
         $error_fields[] = 'password_confirm';
     }
@@ -56,7 +55,7 @@
         die();
     }
 
-    if($data['password'] === $data['password_confirm']) {
+    if($data['password'] === $password_confirm) {
         if(isset($_FILES['avatar'])) {
             $path = 'uploads/' . time() . $_FILES['avatar']['name'];
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
@@ -72,7 +71,7 @@
             $path = '';
         }
         $data['password'] = md5($data['password']);
-        $data['avatar'] = $path;
+        $data['path'] = $path;
 
         toSetData();
 
@@ -83,9 +82,13 @@
         echo json_encode($response);
 
     } else {
+        $error_fields[] = 'password';
+        $error_fields[] = 'password_confirm';
         $response = [
             "status" => false,
-            "message" => "Пароли не совпадают"
+            "type" => 1,
+            "message" => "Пароли не совпадают",
+            "fields" => $error_fields
         ];
         echo json_encode($response);
     }
@@ -102,7 +105,7 @@
     function toSetData()
     {
         global $db, $data;
-        $sql = 'INSERT INTO test (id, full_name, login, email, password, avatar) VALUES (NULL, :full_name, :login, :email, :password, :avatar)';
+        $sql = 'INSERT INTO test (id, full_name, login, email, password, avatar) VALUES (NULL, :full_name, :login, :email, :password, :path)';
         $sth = $db->prepare($sql);
         $sth->execute($data);
     }

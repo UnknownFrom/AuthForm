@@ -3,7 +3,7 @@
 
     if(!isset($_SESSION['user'])){
         header('Location: /');
-}
+    }
     ?>
 
 <!DOCTYPE html>
