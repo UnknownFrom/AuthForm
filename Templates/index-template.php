@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Выбор</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <form class="fr">

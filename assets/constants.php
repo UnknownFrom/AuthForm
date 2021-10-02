@@ -1,0 +1,3 @@
+<?php
+const ERROR_CORRECT_FIELDS = 1;
+const ERROR_LOAD_AVATAR = 2;

@@ -1,10 +1,7 @@
 <?php
-session_start();
-require_once('connect.php');
-global $connect, $db;
 
-const ERROR_CORRECT_FIELDS = 1;
-const ERROR_LOAD_AVATAR = 2;
+require_once '../Database/app.php';
+require_once '../assets/constants.php';
 
 $fullName = $_POST['fullName'];
 $login = $_POST['login'];
@@ -12,8 +9,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $passwordConfirm = $_POST['passwordConfirm'];
 
-
-if (checkLogin($login, $db)) {
+if (checkLogin($login)) {
     $response = [
         'status' => false,
         'type' => ERROR_CORRECT_FIELDS,
@@ -90,7 +86,7 @@ $data = [
     'path' => $path
 ];
 
-toSetData($data, $db);
+toSetData($data);
 
 $response = [
     'status' => true,
@@ -99,17 +95,14 @@ $response = [
 
 echo json_encode($response);
 
-function checkLogin($login, $db)
+function checkLogin($login)
 {
     $sql = 'SELECT * FROM test WHERE login = ?';
-    $sth = $db->prepare($sql);
-    $sth->execute([$login]);
-    return $sth->fetch(PDO::FETCH_ASSOC);
+    return App::getResultFromDB($sql, [$login]);
 }
 
-function toSetData($data, $db)
+function toSetData($data)
 {
     $sql = 'INSERT INTO test (id, fullName, login, email, password, avatar) VALUES (NULL, :fullName, :login, :email, :password, :path)';
-    $sth = $db->prepare($sql);
-    $sth->execute($data);
+    App::setResultToDB($sql, $data);
 }

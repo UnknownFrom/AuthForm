@@ -1,7 +1,8 @@
 <?php
+
 session_start();
-require_once('connect.php');
-global $connect, $db;
+require_once '../Database/app.php';
+require_once '../assets/constants.php';
 
 $login = $_POST['login'];
 $password = $_POST['password'];
@@ -30,11 +31,15 @@ $data = [
     'password' => $password
 ];
 
-$user = checkUser($data, $db);
+$user = checkUser($data);
 if (!$user) {
+    $error_fields[] = 'login';
+    $error_fields[] = 'password';
     $response = [
         'status' => false,
-        'message' => 'Неверный логин или пароль'
+        'type' => ERROR_CORRECT_FIELDS,
+        'message' => 'Неверный логин или пароль',
+        'fields' => $error_fields
     ];
     echo json_encode($response);
     die();
@@ -52,12 +57,10 @@ $response = [
 
 echo json_encode($response);
 
-function checkUser($data, $db)
+function checkUser($data)
 {
     $sql = 'SELECT * FROM `test` WHERE `login` = :login AND `password` = :password';
-    $sth = $db->prepare($sql);
-    $sth->execute($data);
-    return $sth->fetch(PDO::FETCH_ASSOC);
+    return App::getResultFromDB($sql, $data);
 }
 
 

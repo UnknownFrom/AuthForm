@@ -1,4 +1,4 @@
-$('.button-enter').click(function (e) {
+$('button[id="button-enter"]').click(function (e) {
 
     e.preventDefault();
 
@@ -24,7 +24,6 @@ $('.button-enter').click(function (e) {
                         $(`input[name="${field}"]`).addClass('error');
                     });
                 }
-
                 $('.msg').removeClass('none').text(data.message);
             }
 
@@ -39,7 +38,7 @@ $(`input[name="avatar"]`).change(function (e) {
 });
 
 
-$('.button-reg').click(function (e) {
+$('button[id="button-reg"]').click(function (e) {
 
     e.preventDefault();
 
