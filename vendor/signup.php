@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once('connect.php');
-global $connect;
+global $connect, $db;
+
+const ERROR_CORRECT_FIELDS = 1;
+const ERROR_LOAD_AVATAR = 2;
 
 $fullName = $_POST['fullName'];
 $login = $_POST['login'];
@@ -9,10 +12,11 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $passwordConfirm = $_POST['passwordConfirm'];
 
-if (checkLogin($login)) {
+
+if (checkLogin($login, $db)) {
     $response = [
         'status' => false,
-        'type' => 1,
+        'type' => ERROR_CORRECT_FIELDS,
         'message' => 'Такой логин уже существует',
         'fields' => ['login']
     ];
@@ -20,95 +24,91 @@ if (checkLogin($login)) {
     die();
 }
 
-$error_fields = [];
+$errorFields = [];
 
 if ($login === '') {
-    $error_fields[] = 'login';
+    $errorFields[] = 'login';
 }
 if ($password === '') {
-    $error_fields[] = 'password';
+    $errorFields[] = 'password';
 }
 if ($fullName === '') {
-    $error_fields[] = 'fullName';
+    $errorFields[] = 'fullName';
 }
 if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error_fields[] = 'email';
+    $errorFields[] = 'email';
 }
 if ($passwordConfirm === '') {
-    $error_fields[] = 'passwordConfirm';
+    $errorFields[] = 'passwordConfirm';
 }
 
-const ERROR_CORRECT_FIELDS = 1;
-
-if (!empty($error_fields)) {
+if (!empty($errorFields)) {
     $response = [
         'status' => false,
         'type' => ERROR_CORRECT_FIELDS,
         'message' => 'Проверьте правильность полей',
-        'fields' => $error_fields
+        'fields' => $errorFields
     ];
     echo json_encode($response);
     die();
 }
 
-const ERROR_LOAD_AVATAR = 2;
-
-if ($password === $passwordConfirm) {
-    if (isset($_FILES['avatar'])) {
-        $path = 'uploads/' . time() . $_FILES['avatar']['name'];
-        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
-            $response = [
-                'status' => false,
-                'type' => ERROR_LOAD_AVATAR,
-                'message' => 'Ошибка при загрузке аватара'
-            ];
-            echo json_encode($response);
-            die();
-        }
-    } else {
-        $path = '';
-    }
-    $password = md5($password);
-
-    $data = [
-        'fullName' => $fullName,
-        'login' => $login,
-        'email' => $email,
-        'password' => $password,
-        'path' => $path
-    ];
-
-    toSetData($data);
-
-    $response = [
-        'status' => true,
-        'message' => 'Регистрация прошла успешно'
-    ];
-
-} else {
-    $error_fields[] = 'password';
-    $error_fields[] = 'passwordConfirm';
+if ($password !== $passwordConfirm) {
+    $errorFields[] = 'password';
+    $errorFields[] = 'passwordConfirm';
     $response = [
         'status' => false,
         'type' => ERROR_CORRECT_FIELDS,
         'message' => 'Пароли не совпадают',
-        'fields' => $error_fields
+        'fields' => $errorFields
     ];
+    echo json_encode($response);
+    die();
 }
+
+if (isset($_FILES['avatar'])) {
+    $path = 'uploads/' . time() . $_FILES['avatar']['name'];
+    if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) { /*если аватар не загружается*/
+        $response = [
+            'status' => false,
+            'type' => ERROR_LOAD_AVATAR,
+            'message' => 'Ошибка при загрузке аватара'
+        ];
+        echo json_encode($response);
+        die();
+    }
+} else {
+    $path = '';
+}
+
+$password = md5($password);
+$data = [
+    'fullName' => $fullName,
+    'login' => $login,
+    'email' => $email,
+    'password' => $password,
+    'path' => $path
+];
+
+toSetData($data, $db);
+
+$response = [
+    'status' => true,
+    'message' => 'Регистрация прошла успешно'
+];
+
 echo json_encode($response);
 
-function checkLogin($login)
+function checkLogin($login, $db)
 {
-    global $db;
     $sql = 'SELECT * FROM test WHERE login = ?';
     $sth = $db->prepare($sql);
     $sth->execute([$login]);
     return $sth->fetch(PDO::FETCH_ASSOC);
 }
 
-function toSetData($data)
+function toSetData($data, $db)
 {
-    global $db;
     $sql = 'INSERT INTO test (id, fullName, login, email, password, avatar) VALUES (NULL, :fullName, :login, :email, :password, :path)';
     $sth = $db->prepare($sql);
     $sth->execute($data);

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('connect.php');
-global $connect;
+global $connect, $db;
 
 $login = $_POST['login'];
 $password = $_POST['password'];
@@ -30,28 +30,30 @@ $data = [
     'password' => $password
 ];
 
-$user = checkUser($data);
-if ($user) {
-    $_SESSION['user'] = [
-        'id' => $user['id'],
-        'fullName' => $user['fullName'],
-        'avatar' => $user['avatar'],
-        'email' => $user['email']
-    ];
-    $response = [
-        'status' => true
-    ];
-} else {
+$user = checkUser($data, $db);
+if (!$user) {
     $response = [
         'status' => false,
         'message' => 'Неверный логин или пароль'
     ];
+    echo json_encode($response);
+    die();
 }
+
+$_SESSION['user'] = [
+    'id' => $user['id'],
+    'fullName' => $user['fullName'],
+    'avatar' => $user['avatar'],
+    'email' => $user['email']
+];
+$response = [
+    'status' => true
+];
+
 echo json_encode($response);
 
-function checkUser($data)
+function checkUser($data, $db)
 {
-    global $db;
     $sql = 'SELECT * FROM `test` WHERE `login` = :login AND `password` = :password';
     $sth = $db->prepare($sql);
     $sth->execute($data);
