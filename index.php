@@ -1,22 +1,7 @@
 <?php
-    session_start();
+session_start();
 
-    if(isset($_SESSION['user'])){
-        header('Location: profile.php');
-    }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Выбор</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<form class="fr">
-    <button formaction="auth.php">Авторизоваться</button>
-    <button formaction="register.php">Зарегистрироваться</button>
-</form>
-</body>
-</html>
+if (isset($_SESSION['user'])) {
+    header('Location: profile.php');
+}
+require_once 'Templates/index-template.php';
