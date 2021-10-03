@@ -31,7 +31,7 @@ $data = [
     'password' => $password
 ];
 
-$user = checkUser($data);
+$user = App::getResultFromDB(SELECT_USER, $data);
 if (!$user) {
     $error_fields[] = 'login';
     $error_fields[] = 'password';
@@ -56,11 +56,3 @@ $response = [
 ];
 
 echo json_encode($response);
-
-function checkUser($data)
-{
-    $sql = 'SELECT * FROM `test` WHERE `login` = :login AND `password` = :password';
-    return App::getResultFromDB($sql, $data);
-}
-
-

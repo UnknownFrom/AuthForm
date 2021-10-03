@@ -9,7 +9,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $passwordConfirm = $_POST['passwordConfirm'];
 
-if (checkLogin($login)) {
+if (App::getResultFromDB(SELECT_LOGIN, ['login' => $login])) {
     $response = [
         'status' => false,
         'type' => ERROR_CORRECT_FIELDS,
@@ -86,7 +86,8 @@ $data = [
     'path' => $path
 ];
 
-toSetData($data);
+App::setResultToDB(INSERT_USER, $data);
+//toSetData($data);
 
 $response = [
     'status' => true,
@@ -94,15 +95,3 @@ $response = [
 ];
 
 echo json_encode($response);
-
-function checkLogin($login)
-{
-    $sql = 'SELECT * FROM test WHERE login = ?';
-    return App::getResultFromDB($sql, [$login]);
-}
-
-function toSetData($data)
-{
-    $sql = 'INSERT INTO test (id, fullName, login, email, password, avatar) VALUES (NULL, :fullName, :login, :email, :password, :path)';
-    App::setResultToDB($sql, $data);
-}
