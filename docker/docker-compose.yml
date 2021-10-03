@@ -1,0 +1,50 @@
+version: '3'
+services:
+  app:
+    build: ..
+
+  nginx:
+    #image: nginx:latest
+    build:
+      context: "./nginx/"
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+  php:
+    #image: php:latest
+    build:
+      context: "./php/"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - mysql
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+      - "REDIS_PORT=6379"
+      - "REDIS_HOST=redis"
+
+  mysql:
+    #image: mysql:5.7
+    build:
+      context: "./mysql/"
+    volumes:
+      - ./storage/docker/mysql:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=''"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=''"
+      - "MYSQL_DATABASE=paveladmin"
+    ports:
+      - "33061:3306"
+  phpmyadmin:
+    #image: phpmyadmin
+    build:
+      context: "./phpmyadmin/"
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8080:80"
