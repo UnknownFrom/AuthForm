@@ -21,7 +21,7 @@ $router = $urls[0];
 $urlData = array_slice($urls, 1);
 
 // Подключаем файл-роутер и запускаем главную функцию
-include_once 'routers/' . $router . '.php-fpm';
+include_once 'objects/' . $router . '.php-fpm';
 route($method, $urlData, $formData);
 
 // Получение данных из тела запроса

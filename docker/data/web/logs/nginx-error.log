@@ -499,3 +499,124 @@
 2021/10/04 13:20:02 [error] 7#0: *18 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.0.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/auth.php?login=UnknownFrom&password=123"
 2021/10/04 13:20:02 [error] 7#0: *17 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.0.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/auth.php?login=UnknownFrom&password=123"
 2021/10/04 13:20:02 [error] 7#0: *20 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.0.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/auth.php?login=UnknownFrom&password=123"
+2021/10/04 14:06:08 [notice] 1#1: using the "epoll" event method
+2021/10/04 14:06:08 [notice] 1#1: nginx/1.21.3
+2021/10/04 14:06:08 [notice] 1#1: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2021/10/04 14:06:08 [notice] 1#1: OS: Linux 5.10.16.3-microsoft-standard-WSL2
+2021/10/04 14:06:08 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/10/04 14:06:08 [notice] 1#1: start worker processes
+2021/10/04 14:06:08 [notice] 1#1: start worker process 31
+2021/10/04 14:06:08 [notice] 1#1: start worker process 32
+2021/10/04 14:06:08 [notice] 1#1: start worker process 33
+2021/10/04 14:06:08 [notice] 1#1: start worker process 34
+2021/10/04 14:06:08 [notice] 1#1: start worker process 35
+2021/10/04 14:06:08 [notice] 1#1: start worker process 36
+2021/10/04 14:06:08 [notice] 1#1: start worker process 37
+2021/10/04 14:06:08 [notice] 1#1: start worker process 38
+2021/10/04 14:06:08 [notice] 1#1: start worker process 39
+2021/10/04 14:06:08 [notice] 1#1: start worker process 40
+2021/10/04 14:06:08 [notice] 1#1: start worker process 41
+2021/10/04 14:06:08 [notice] 1#1: start worker process 42
+2021/10/04 14:06:31 [error] 32#32: *2 "/application/public/index.php" is not found (2: No such file or directory), client: 192.168.16.1, server: , request: "GET / HTTP/1.1", host: "localhost"
+2021/10/04 14:06:32 [error] 32#32: *2 open() "/application/public/favicon.ico" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2021/10/04 14:06:40 [error] 31#31: *3 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/index.php"
+2021/10/04 14:06:42 [error] 31#31: *3 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:06:42 [error] 32#32: *4 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:06:42 [error] 31#31: *7 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:06:42 [error] 31#31: *7 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:06:44 [error] 31#31: *7 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:44 [error] 32#32: *4 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:44 [error] 31#31: *3 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:44 [error] 31#31: *3 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:44 [error] 31#31: *3 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:46 [error] 31#31: *3 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php"
+2021/10/04 14:06:46 [error] 32#32: *4 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php"
+2021/10/04 14:06:46 [error] 31#31: *7 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php"
+2021/10/04 14:06:47 [error] 31#31: *7 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:06:47 [error] 32#32: *4 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.16.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:08:31 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/10/04 14:08:31 [notice] 31#31: gracefully shutting down
+2021/10/04 14:08:31 [notice] 32#32: gracefully shutting down
+2021/10/04 14:08:31 [notice] 33#33: gracefully shutting down
+2021/10/04 14:08:31 [notice] 34#34: gracefully shutting down
+2021/10/04 14:08:31 [notice] 35#35: gracefully shutting down
+2021/10/04 14:08:31 [notice] 36#36: gracefully shutting down
+2021/10/04 14:08:31 [notice] 37#37: gracefully shutting down
+2021/10/04 14:08:31 [notice] 38#38: gracefully shutting down
+2021/10/04 14:08:31 [notice] 39#39: gracefully shutting down
+2021/10/04 14:08:31 [notice] 40#40: gracefully shutting down
+2021/10/04 14:08:31 [notice] 41#41: gracefully shutting down
+2021/10/04 14:08:31 [notice] 42#42: gracefully shutting down
+2021/10/04 14:08:31 [notice] 31#31: exiting
+2021/10/04 14:08:31 [notice] 32#32: exiting
+2021/10/04 14:08:31 [notice] 33#33: exiting
+2021/10/04 14:08:31 [notice] 34#34: exiting
+2021/10/04 14:08:31 [notice] 35#35: exiting
+2021/10/04 14:08:31 [notice] 36#36: exiting
+2021/10/04 14:08:31 [notice] 37#37: exiting
+2021/10/04 14:08:31 [notice] 38#38: exiting
+2021/10/04 14:08:31 [notice] 39#39: exiting
+2021/10/04 14:08:31 [notice] 40#40: exiting
+2021/10/04 14:08:31 [notice] 41#41: exiting
+2021/10/04 14:08:31 [notice] 42#42: exiting
+2021/10/04 14:08:31 [notice] 31#31: exit
+2021/10/04 14:08:31 [notice] 32#32: exit
+2021/10/04 14:08:31 [notice] 33#33: exit
+2021/10/04 14:08:31 [notice] 34#34: exit
+2021/10/04 14:08:31 [notice] 35#35: exit
+2021/10/04 14:08:31 [notice] 36#36: exit
+2021/10/04 14:08:31 [notice] 37#37: exit
+2021/10/04 14:08:31 [notice] 38#38: exit
+2021/10/04 14:08:31 [notice] 39#39: exit
+2021/10/04 14:08:31 [notice] 40#40: exit
+2021/10/04 14:08:31 [notice] 41#41: exit
+2021/10/04 14:08:31 [notice] 42#42: exit
+2021/10/04 14:08:31 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/10/04 14:08:31 [notice] 1#1: worker process 31 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 35 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 38 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: signal 29 (SIGIO) received
+2021/10/04 14:08:31 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2021/10/04 14:08:31 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/10/04 14:08:31 [notice] 1#1: worker process 33 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 34 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 36 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 37 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 40 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 41 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: signal 29 (SIGIO) received
+2021/10/04 14:08:31 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2021/10/04 14:08:31 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2021/10/04 14:08:31 [notice] 1#1: worker process 32 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 39 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: worker process 42 exited with code 0
+2021/10/04 14:08:31 [notice] 1#1: exit
+2021/10/04 14:08:46 [notice] 1#1: using the "epoll" event method
+2021/10/04 14:08:46 [notice] 1#1: nginx/1.21.3
+2021/10/04 14:08:46 [notice] 1#1: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2021/10/04 14:08:46 [notice] 1#1: OS: Linux 5.10.16.3-microsoft-standard-WSL2
+2021/10/04 14:08:46 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/10/04 14:08:46 [notice] 1#1: start worker processes
+2021/10/04 14:08:46 [notice] 1#1: start worker process 30
+2021/10/04 14:08:46 [notice] 1#1: start worker process 31
+2021/10/04 14:08:46 [notice] 1#1: start worker process 32
+2021/10/04 14:08:46 [notice] 1#1: start worker process 33
+2021/10/04 14:08:46 [notice] 1#1: start worker process 34
+2021/10/04 14:08:46 [notice] 1#1: start worker process 35
+2021/10/04 14:08:46 [notice] 1#1: start worker process 36
+2021/10/04 14:08:46 [notice] 1#1: start worker process 37
+2021/10/04 14:08:46 [notice] 1#1: start worker process 38
+2021/10/04 14:08:46 [notice] 1#1: start worker process 39
+2021/10/04 14:08:46 [notice] 1#1: start worker process 40
+2021/10/04 14:08:46 [notice] 1#1: start worker process 41
+2021/10/04 14:08:53 [error] 30#30: *2 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:53 [error] 30#30: *1 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:54 [error] 30#30: *1 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:54 [error] 30#30: *2 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:54 [error] 31#31: *5 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:54 [error] 31#31: *5 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/auth.php?"
+2021/10/04 14:08:55 [error] 31#31: *5 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:08:55 [error] 30#30: *2 open() "/application/public/assets/js/http_code.jquery.com_jquery-3.6.0.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/http_code.jquery.com_jquery-3.6.0.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:08:55 [error] 30#30: *1 open() "/application/public/assets/js/main.js" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/register.php"
+2021/10/04 14:09:04 [error] 31#31: *8 open() "/application/public/assets/css/main.css" failed (2: No such file or directory), client: 192.168.32.1, server: , request: "GET /assets/css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/index.php"
+2021/10/04 14:09:23 [error] 30#30: *11 "/application/public/index.php" is not found (2: No such file or directory), client: 192.168.32.1, server: , request: "GET / HTTP/1.1", host: "localhost"
