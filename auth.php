@@ -2,6 +2,6 @@
 session_start();
 
 if (isset($_SESSION['user'])) {
-    header('Location: profile.php');
+    header('Location: profile.php-fpm');
 }
-require_once 'Templates/auth-template.php';
+require_once './Templates/auth-template.php';

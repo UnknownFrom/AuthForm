@@ -10,7 +10,7 @@ class App
     /*public function __construct()
     {
         try {
-            require_once 'connect.php';
+            require_once 'connect.php-fpm';
             global $db;
             $this->db = $db;
         }

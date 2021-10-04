@@ -2,9 +2,9 @@
 session_start();
 
 if (isset($_SESSION['user'])) {
-    header('Location: profile.php');
+    header('Location: profile.php-fpm');
 }
-require_once 'Templates/index-template.php';
+require_once './Templates/index-template.php';
 
 /*// Определяем метод запроса
 $method = $_SERVER['REQUEST_METHOD'];
@@ -21,7 +21,7 @@ $router = $urls[0];
 $urlData = array_slice($urls, 1);
 
 // Подключаем файл-роутер и запускаем главную функцию
-include_once 'routers/' . $router . '.php';
+include_once 'routers/' . $router . '.php-fpm';
 route($method, $urlData, $formData);
 
 // Получение данных из тела запроса
@@ -33,7 +33,7 @@ function getFormData($method) {
 
     // PUT, PATCH или DELETE
     $data = array();
-    $exploded = explode('&', file_get_contents('php://input'));
+    $exploded = explode('&', file_get_contents('php-fpm://input'));
 
     foreach($exploded as $pair) {
         $item = explode('=', $pair);

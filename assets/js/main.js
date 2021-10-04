@@ -17,7 +17,7 @@ $('button[id="button-enter"]').click(function (e) {
         },
         success(data) {
             if (data.status) {
-                document.location.href = '/profile.php';
+                document.location.href = '/profile.php-fpm';
             } else {
                 if (data.type === 1) {
                     data.fields.forEach(function (field) {
@@ -70,7 +70,7 @@ $('button[id="button-reg"]').click(function (e) {
 
         success(data) {
             if (data.status) {
-                document.location.href = '/auth.php';
+                document.location.href = '/auth.php-fpm';
             } else {
                 if (data.type === 1) {
                     data.fields.forEach(function (field) {
